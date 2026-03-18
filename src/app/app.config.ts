@@ -1,27 +1,60 @@
 import { ApplicationConfig, DEFAULT_CURRENCY_CODE, LOCALE_ID, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { providePrimeNG } from 'primeng/config'
-import { MessageService } from 'primeng/api';
 import { routes } from './app.routes';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import Aura from '@primeng/themes/aura';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { providePrimeNG } from 'primeng/config';
+import { MessageService } from 'primeng/api';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
+import { ChronoBoxTheme, ChronoBoxTranslation } from './primeng-theme';
+import { LoadingInterceptor } from './core/interceptors/loadingInterceptor';
+import { BasicAuthInterceptor } from './core/interceptors/basicAuthInterceptor';
+import { authInterceptor } from './core/interceptors/authInterceptor';
+import { IS_MOBILE, IsMobileService } from './shared/services/is-mobile.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
     providePrimeNG({
+      ripple: true,
       theme: {
-        preset: Aura,
+        preset: ChronoBoxTheme,
         options: {
-          prefix: 'my',
-          darkModeSelector: false || 'none'
+          prefix: 'p',
+          cssLayer: false,
+          darkModeSelector: 'off',
         }
       },
+      translation: ChronoBoxTranslation
     }),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BasicAuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'
+    },
+    {
+      provide: DEFAULT_CURRENCY_CODE,
+      useValue: 'BRL'
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    },
     MessageService,
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
-    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
+    {
+      provide: IS_MOBILE,
+      useFactory: (mobileService: IsMobileService) => {
+        return mobileService.isMobile;
+      },
+      deps: [IsMobileService]
+    }
   ]
 };

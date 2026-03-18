@@ -1,36 +1,58 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { lastValueFrom } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { Router } from '@angular/router';
+import { inject, Injectable, signal } from '@angular/core';
+import { lastValueFrom, tap } from 'rxjs';
+import { environment } from '../../environments/environments';
+import { IUserRegister } from '../models/IUserRegister';
 
-export const TOKEN = 'token';
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
-  private http: HttpClient = inject(HttpClient);
-  private messageService: MessageService = inject(MessageService);
-  private router: Router = inject(Router);
+  private http = inject(HttpClient);
+  public isLogged = signal(!!localStorage.getItem('isLogged'));
+  public emailUser = signal('');
+
+
   constructor() { }
-
-  public login(form: FormData) {
-    return lastValueFrom(this.http.post(`${environment.apiUrl}/auth/login`, form));
+  login(credentials: { email: string; senha: string }) {
+    return lastValueFrom(
+      this.http.post(`${environment.apiURL}/api/auth/login`, credentials, {
+        withCredentials: true,
+        responseType: 'text'
+      })
+    ).then(res => {
+      localStorage.setItem('isLogged', 'true');
+      this.isLogged.set(true);
+      const limpa = res.replace(/\s*signed in/, "");
+      this.emailUser.set(limpa)
+      return res;
+    });
   }
 
-  public register(form: FormData) {
-    return lastValueFrom(this.http.post(`${environment.apiUrl}/auth/register`, form));
+  register(data: IUserRegister) {
+    return lastValueFrom(
+      this.http.post(`${environment.apiURL}/api/auth/register`, data, {
+        withCredentials: true,
+        responseType: 'text'
+      })
+    );
   }
 
-  public getAuthToken() {
-    return localStorage.getItem(TOKEN);
+
+  logout() {
+    return lastValueFrom(
+      this.http.post(`${environment.apiURL}/api/auth/logout`, {}, {
+        withCredentials: true,
+        responseType: 'text'
+      })
+    ).then(res => {
+      localStorage.removeItem('isLogged');
+      this.isLogged.set(false);
+      return res;
+    });
   }
 
-  public logout() {
-    localStorage.removeItem(TOKEN);
-    this.router.navigate(['/login'])
+  isLoggedIn(): boolean {
+    return localStorage.getItem('isLogged') === 'true';
   }
 }
-
