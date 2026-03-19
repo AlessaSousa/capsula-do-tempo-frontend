@@ -1,1 +1,36 @@
-<p>auth works!</p>
+<section class="flex flex-column justify-content-center h-full relative">
+    <div class="container">
+        @if(select.value === 'login') {
+        <h1>Login</h1>
+        <span>Entre com sua conta para continuar!</span>
+        } @else {
+        <h1>Register</h1>
+        <span>Cadastre sua conta para continuar!</span>
+        }
+        
+        <p-selectbutton 
+        class="mt-2"
+        [options]="stateOptions" 
+        [(ngModel)]="value" 
+        optionLabel="label" 
+        optionValue="value" 
+        aria-labelledby="basic" 
+        #select
+        />
+
+        @if(select.value === 'login') {
+            <app-login class="w-full"/>
+        } @else if (select.value === 'register') {
+            <app-register class="w-full"/>
+        }
+    </div>
+
+    <div class="customButton">
+        <p-button
+        label="Salvar"
+        icon="pi pi-arrow-right"
+        iconPos="right"
+        fluid
+        />
+    </div>
+</section>

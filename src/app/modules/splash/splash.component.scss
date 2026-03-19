@@ -1,6 +1,7 @@
 .container {
     height: 100vh;
     position: relative;
+    overflow: hidden;
 }
 
 .container-one {
@@ -17,25 +18,41 @@
 }
 
 .shape1 {
-    width: 250px;
-    height: 250px;
+    width: 175px;
+    height: 175px;
     background: #6366f1;
 
     border-radius: 58% 42% 63% 37% / 41% 56% 44% 59%;
 
-    bottom: 80px;
-    right: 0;
+    bottom: -20px;
+    right: -20px;
 }
 
 .shape2 {
-    width: 250px;
-    height: 250px;
+    width: 175px;
+    height: 175px;
     background: #22c55e78;
 
     border-radius: 40% 60% 55% 45% / 60% 35% 65% 40%;
 
-    top: 50px;
-    left: 10px;
+    top: -20px;
+    left: -40px;
+}
+
+.shape3 {
+    width: 175px;
+    height: 175px;
+    background: #fbff0078;
+
+    border-radius: 40% 60% 55% 45% / 60% 35% 65% 40%;
+
+    top: 100px;
+    right: -40px;
+}
+
+
+.shape {
+    animation: float 12s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -52,17 +69,26 @@
     }
 }
 
-.shape {
-    animation: float 12s ease-in-out infinite;
-}
-
 .content-two {
     height: 100%;
-    padding: 20px;
+    padding: 50px;
     display: flex;
     flex-direction: column;
     justify-content: end;
-    h2, p {
+    position: relative;
+
+    h2,
+    p {
         text-align: center;
+    }
+}
+
+.icon-glass {
+    position: absolute;
+    top: 30%;
+    left: 40%;
+
+    span {
+        font-size: 100px;
     }
 }
