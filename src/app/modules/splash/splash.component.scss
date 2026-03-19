@@ -1,0 +1,68 @@
+.container {
+    height: 100vh;
+    position: relative;
+}
+
+.container-one {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    filter: blur(80px);
+    opacity: 0.6;
+}
+
+.shape1 {
+    width: 250px;
+    height: 250px;
+    background: #6366f1;
+
+    border-radius: 58% 42% 63% 37% / 41% 56% 44% 59%;
+
+    bottom: 80px;
+    right: 0;
+}
+
+.shape2 {
+    width: 250px;
+    height: 250px;
+    background: #22c55e78;
+
+    border-radius: 40% 60% 55% 45% / 60% 35% 65% 40%;
+
+    top: 50px;
+    left: 10px;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(40px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.shape {
+    animation: float 12s ease-in-out infinite;
+}
+
+.content-two {
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    h2, p {
+        text-align: center;
+    }
+}
