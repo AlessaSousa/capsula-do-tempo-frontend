@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, model, signal } from '@angular/core';
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from './register/register.component';
 import { SelectButton } from 'primeng/selectbutton';
@@ -22,4 +22,10 @@ export class AuthComponent {
     { label: 'Register', value: 'register' }];
 
   value: string = 'login';
+
+  public isSave = model(false);
+
+  save() {
+    this.isSave.set(true)
+  }
 }

@@ -1,1 +1,21 @@
-<p>register works!</p>
+<form class="my-4 flex flex-column gap-3" [formGroup]="form">
+    <p-floatlabel variant="on">
+        <input inputId="nome" pInputText fluid formControlName="name">
+        <label for="nome">Nome</label>
+    </p-floatlabel>
+
+    <p-floatlabel variant="on">
+        <input inputId="email" pInputText fluid formControlName="email">
+        <label for="email">E-mail</label>
+    </p-floatlabel>
+
+    <p-floatlabel variant="on">
+        <input inputId="senha" pInputText fluid formControlName="senha">
+        <label for="senha">Senha</label>
+    </p-floatlabel>
+
+    <p-floatlabel variant="on">
+        <input inputId="confirm" pInputText fluid formControlName="confirmSenha">
+        <label for="confirm">Confirmar Senha</label>
+    </p-floatlabel>
+</form>

@@ -10,38 +10,35 @@ import { IUserRegister } from '../models/IUserRegister';
 export class AuthService {
   private http = inject(HttpClient);
   public isLogged = signal(!!localStorage.getItem('isLogged'));
-  public emailUser = signal('');
-
 
   constructor() { }
+
   login(credentials: { email: string; senha: string }) {
     return lastValueFrom(
-      this.http.post(`${environment.apiURL}/api/auth/login`, credentials, {
+      this.http.post(`${environment.apiURL}/auth/login`, credentials, {
         withCredentials: true,
         responseType: 'text'
       })
     ).then(res => {
       localStorage.setItem('isLogged', 'true');
       this.isLogged.set(true);
-      const limpa = res.replace(/\s*signed in/, "");
-      this.emailUser.set(limpa)
       return res;
     });
   }
 
+
+  // TODO: ALTERAR MÉTODO
+
   register(data: IUserRegister) {
     return lastValueFrom(
-      this.http.post(`${environment.apiURL}/api/auth/register`, data, {
-        withCredentials: true,
-        responseType: 'text'
-      })
+      this.http.post(`${environment.apiURL}/auth/register`, data)
     );
   }
 
 
   logout() {
     return lastValueFrom(
-      this.http.post(`${environment.apiURL}/api/auth/logout`, {}, {
+      this.http.post(`${environment.apiURL}/auth/logout`, {}, {
         withCredentials: true,
         responseType: 'text'
       })

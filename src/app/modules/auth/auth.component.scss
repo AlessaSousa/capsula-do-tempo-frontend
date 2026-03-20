@@ -9,6 +9,25 @@
     align-items: center;
 }
 
+.content-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
 .customButton {
     margin: 50px 20px 0 20px;
+}
+
+@media (min-width: 768px) {
+    .container-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content-main {
+        width: 500px;
+    }
 }

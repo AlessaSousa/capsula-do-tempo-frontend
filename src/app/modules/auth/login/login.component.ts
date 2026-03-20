@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, model, ModelSignal } from '@angular/core';
 import { InputText } from 'primeng/inputtext'
 import { FloatLabel } from 'primeng/floatlabel';
 @Component({
@@ -11,5 +11,5 @@ import { FloatLabel } from 'primeng/floatlabel';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-
+  public isSave: ModelSignal<boolean> = model.required();
 }
