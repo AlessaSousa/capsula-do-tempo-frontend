@@ -1,8 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { lastValueFrom, tap } from 'rxjs';
+import { lastValueFrom, map, tap } from 'rxjs';
 import { environment } from '../../environments/environments';
-import { IUserRegister } from '../models/IUserRegister';
+import { IUser } from '../models/IUser';
+
+interface AuthResponse {
+  access_token: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +17,15 @@ export class AuthService {
 
   constructor() { }
 
-  login(credentials: { email: string; senha: string }) {
+  login(data: Partial<IUser>) {
     return lastValueFrom(
-      this.http.post(`${environment.apiURL}/auth/login`, credentials, {
-        withCredentials: true,
-        responseType: 'text'
-      })
+      this.http.post<AuthResponse>(
+        `${environment.apiURL}/auth/login`,
+        data
+      )
     ).then(res => {
-      localStorage.setItem('isLogged', 'true');
-      this.isLogged.set(true);
+      console.log('token', res)
+      localStorage.setItem('tokenCapsula', res.access_token);
       return res;
     });
   }
@@ -29,10 +33,17 @@ export class AuthService {
 
   // TODO: ALTERAR MÉTODO
 
-  register(data: IUserRegister) {
+  register(data: IUser) {
     return lastValueFrom(
-      this.http.post(`${environment.apiURL}/auth/register`, data)
-    );
+      this.http.post<AuthResponse>(
+        `${environment.apiURL}/auth/register`,
+        data
+      )
+    ).then(res => {
+      console.log('token', res)
+      localStorage.setItem('tokenCapsula', res.access_token);
+      return res;
+    });
   }
 
 

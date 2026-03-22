@@ -1,4 +1,4 @@
-export interface IUserRegister {
+export interface IUser {
     nome: string,
     email: string,
     senha: string,
