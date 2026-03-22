@@ -1,11 +1,11 @@
-<div class="my-4 flex flex-column gap-3">
+<div class="my-4 flex flex-column gap-3" [formGroup]="form">
     <p-floatlabel variant="on">
-        <input inputId="email" pInputText fluid>
+        <input inputId="email" pInputText fluid formControlName="email">
         <label for="email">E-mail</label>
     </p-floatlabel>
 
     <p-floatlabel variant="on">
-        <input inputId="senha" pInputText fluid>
-        <label for="senha">Senha</label>
+        <p-password id="senha_input" [toggleMask]="true" fluid formControlName="password" autocomplete="off" />
+        <label for="senha_input">Senha</label>
     </p-floatlabel>
 </div>

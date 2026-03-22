@@ -6,7 +6,7 @@
             <span>Entre com sua conta para continuar!</span>
             } @else {
             <h1>Register</h1>
-            <span>Cadastre sua conta para continuar!</span>
+            <span>Cadastre uma conta para continuar!</span>
             }
             
             <p-selectbutton 
@@ -22,7 +22,7 @@
             @if(select.value === 'login') {
                 <app-login class="w-full" [(isSave)]="isSave"/>
             } @else if (select.value === 'register') {
-                <app-register class="w-full" [(isSave)]="isSave"/>
+                <app-register class="w-full" [(isSave)]="isSave" [(isRegister)]="isRegister"/>
             }
         </div>
     

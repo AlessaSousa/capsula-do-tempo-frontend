@@ -10,12 +10,13 @@
     </p-floatlabel>
 
     <p-floatlabel variant="on">
-        <input inputId="senha" pInputText fluid formControlName="senha">
-        <label for="senha">Senha</label>
+        <p-password id="senha_input" [toggleMask]="true" fluid formControlName="password" autocomplete="off" />
+        <label for="senha_input">Senha</label>
     </p-floatlabel>
 
     <p-floatlabel variant="on">
-        <input inputId="confirm" pInputText fluid formControlName="confirmSenha">
-        <label for="confirm">Confirmar Senha</label>
+        <p-password id="confirm_senha_input" [toggleMask]="true" fluid formControlName="confirm"
+            autocomplete="off" />
+        <label for="confirm_senha_input">Confirmar Senha</label>
     </p-floatlabel>
 </form>

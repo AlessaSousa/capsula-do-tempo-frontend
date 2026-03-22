@@ -4,14 +4,16 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { InputText } from 'primeng/inputtext';
 import { LoadingService } from '../../../shared/services/loading.service';
 import { AuthService } from '../../../shared/services/auth.service';
-
+import { ToastService } from '../../../shared/services/toast.service';
+import { PasswordModule } from 'primeng/password';
 @Component({
   selector: 'app-register',
   imports: [
     InputText,
     FloatLabel,
-    ReactiveFormsModule
-],
+    ReactiveFormsModule,
+    PasswordModule
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
@@ -19,41 +21,48 @@ export class RegisterComponent {
   private loadingService = inject(LoadingService);
   private authService = inject(AuthService);
   private formBuild = inject(FormBuilder);
-
-  // TODO: ADICIONAR TOAST 
-
-  // private toastService = inject(ToastService)
+  private toastService = inject(ToastService);
   public isSave: ModelSignal<boolean> = model.required();
   public form!: FormGroup;
+  public isRegister: ModelSignal<boolean> = model.required();
 
   constructor() {
     this.form = this.formBuild.group({
       name: [null, [Validators.required]],
-      email: [null, [Validators.required]],
-      senha: [null, [Validators.required]],
-      confirmSenha: [null, [Validators.required]]
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required]],
+      confirm: [null, [Validators.required]]
     })
 
     effect(() => {
-      if (this.isSave()) {
-        this.register()
-        console.log('is save', this.isSave())
-      }
-    })
+      const shouldSave = this.isSave();
+
+      if (!shouldSave) return;
+
+      this.isSave.set(false);
+
+      this.register();
+    });
   }
 
   private register() {
+    const { password, confirm } = this.form.value;
+    if (password !== confirm) {
+      return this.toastService.showToastError('As senhas não coincidem');
+    }
     this.loadingService.show()
     this.authService.register(this.form.value)
-    .then((res) => {
-      console.log(res)
-      alert('Cadastrado com sucesso!')
-      this.isSave.set(false);
-    })
-    .catch((err) => {
-      console.log(err)
-      alert('Erro ao cadastrar usuário!')
-    })
-    .finally(() => this.loadingService.hide())
+      .then((res) => {
+        console.log(res)
+        this.toastService.showToastSuccess('Usuário cadastrado com sucesso!')
+        this.isRegister.set(true)
+      })
+      .catch((err) => {
+        console.log(err)
+        this.toastService.showToastError('Erro ao cadastrar usuário!')
+      })
+      .finally(() => {
+        this.loadingService.hide()
+      })
   }
 }
