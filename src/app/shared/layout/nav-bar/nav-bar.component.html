@@ -1,0 +1,13 @@
+<nav class="container">
+    @for(item of menuItems(); track item; let i = $index) {
+    <a [routerLink]="item.route" class="link mx-2" [class.active]="i === activeIndex()" (click)="setActive(i)">
+        <span class="link-icon text-2xl">
+            <span class="material-symbols-outlined">{{item.icon}}</span>
+        </span>
+
+        <!-- <span class="link-title" [class.expanded]="activeIndex()">{{item.label}}</span> -->
+    </a>
+    }
+
+    <!-- <div class="indicator" [ngStyle]="{'transform': 'translateX(' + (125 * activeIndex()) + 'px)'}"></div> -->
+</nav>

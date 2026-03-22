@@ -1,0 +1,39 @@
+.container {
+    height: 50px;
+    background: var(--bg-nav-bar);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active {
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    transform: translateY(-25px) scale(1.2);
+    transition: background transform 0.3s ease-in-out;
+}
+
+// .indicator {
+//     position: absolute;
+//     top: -56%;
+//     width: 70px;
+//     height: 70px;
+//     background: var(--color-pink);
+//     border: 6px solid #fff;
+//     border-radius: 50%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     transition: .5s;
+// }
