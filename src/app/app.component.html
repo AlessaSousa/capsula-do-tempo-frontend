@@ -1,3 +1,5 @@
+<app-loading/>
+<p-toast position="top-center" key="tc" class="ui-toast"></p-toast>
 <div class="container">
     <section class="content-one">
         <div class="shape shape1"></div>
@@ -6,4 +8,8 @@
     </section>
 
     <router-outlet />
+
+    @if(isMobile() && showNavBar()) {
+        <app-nav-bar/>
+    }
 </div>
