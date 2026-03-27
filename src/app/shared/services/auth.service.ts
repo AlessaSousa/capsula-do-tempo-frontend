@@ -25,6 +25,8 @@ export class AuthService {
       )
     ).then(res => {
       console.log('token', res)
+      localStorage.setItem('isLogged', 'true');
+      this.isLogged.set(true);
       localStorage.setItem('tokenCapsula', res.access_token);
       return res;
     });
@@ -47,18 +49,15 @@ export class AuthService {
   }
 
 
-  logout() {
-    return lastValueFrom(
-      this.http.post(`${environment.apiURL}/auth/logout`, {}, {
-        withCredentials: true,
-        responseType: 'text'
-      })
-    ).then(res => {
-      localStorage.removeItem('isLogged');
-      this.isLogged.set(false);
-      return res;
-    });
-  }
+  // logout() {
+  //   return lastValueFrom(
+  //     this.http.post(`${environment.apiURL}/auth/logout`, {})
+  //   ).then(res => {
+  //     localStorage.removeItem('isLogged');
+  //     this.isLogged.set(false);
+  //     return res;
+  //   });
+  // }
 
   isLoggedIn(): boolean {
     return localStorage.getItem('isLogged') === 'true';
