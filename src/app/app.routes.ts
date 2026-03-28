@@ -4,6 +4,7 @@ import { AuthComponent } from './modules/auth/auth.component';
 import { HomeComponent } from './modules/home/home.component';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { AuthGuard } from './core/authGuard';
+import { FormCapsuleComponent } from './modules/form-capsule/form-capsule.component';
 
 export const routes: Routes = [
     //   { path: 'login', loadComponent: () => import('./core-components/signin/signin.component').then(m => m.SigninComponent), canActivate: [redirectLogin] },
@@ -14,6 +15,7 @@ export const routes: Routes = [
     { path: '', component: SplashComponent },
     { path: 'auth', component: AuthComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: 'form_capsula', component: FormCapsuleComponent, canActivate: [AuthGuard] }
 
 ];

@@ -11,7 +11,7 @@ import { NavBarComponent } from './shared/layout/nav-bar/nav-bar.component';
     RouterOutlet,
     ToastModule,
     LoadingComponent,
-    NavBarComponent
+    NavBarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

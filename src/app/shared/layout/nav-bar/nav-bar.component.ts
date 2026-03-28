@@ -28,9 +28,9 @@ export class NavBarComponent {
       [
         { route: '/home', icon: 'home', label: 'Adicionar' },
         { route: '/home', icon: 'hourglass', label: 'Adicionar' },
-        { route: '/home', icon: 'add', label: 'Adicionar' },
+        { route: '/form_capsula', icon: 'add', label: 'Adicionar' },
         { route: '/home', icon: 'note', label: 'Adicionar' },
-        { route: '/home', icon: 'people', label: 'Adicionar' }
+        { route: '/profile', icon: 'people', label: 'Adicionar' }
       ]
     )
   }
