@@ -4,4 +4,49 @@
     title="Adicionar Cápsula"
     [(eventClick)]="onBack"
     />
+
+    <aside class="container">
+        <div class="box-input">
+            <span class="text-gray-700">Título</span>
+            <input class="custom-input" placeholder="Digite aqui...">
+        </div>
+
+        <div class="box-input">
+            <span class="text-gray-700">E-mail do destinatário</span>
+            <input type="email" class="custom-input" placeholder="Digite aqui...">
+        </div>
+
+        <div class="box-input flex flex-column">
+            <span class="text-gray-700">E-mail do destinatário</span>
+            <textarea 
+            class="custom-textarea" 
+            placeholder="Digite aqui..."
+            [rows]="6"
+            ></textarea>
+        </div>
+
+        <div class="box-input input-image flex flex-column" style="height: 15rem;">
+            <span>Adicionar Imagem</span>
+
+            <div class="flex justify-content-center align-items-center h-full">
+                <label 
+                class="pi pi-plus icon cursor-pointer" 
+                for="add-image"
+                >
+                </label>
+    
+                <input 
+                id="add-image" 
+                type="file" 
+                accept="image/png, image/jpeg, image/jpg, image/gif" 
+                value=""
+                (change)="onUpload($event)" />
+            </div>
+        </div>
+
+        <div class="box-input">
+            <p-datepicker/>
+        </div>
+    </aside>
+
 </section>

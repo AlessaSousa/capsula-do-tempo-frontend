@@ -1,0 +1,49 @@
+.box-input {
+    background: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    height: auto;
+    margin: 16px 24px;
+    border-radius: 15px;
+    padding: 12px 16px;
+}
+
+.custom-input {
+    width: 100%;
+    border-radius: 8px;
+    padding: 4px;
+    border: none;
+    font-family: 'Lexend Deca';
+}
+
+:host input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.custom-textarea {
+    border-radius: 8px;
+    padding: 4px;
+    resize: none;
+    border: none;
+    font-family: 'Lexend Deca';
+}
+
+:host textarea {
+    outline: none;
+    box-shadow: none;
+}
+
+:host .input-image input[type="file"] {
+    display: none;
+}
+
+.icon {
+    font-size: 50px;
+    &:hover {
+        transform: scale(0.90);
+        transition: transform 0.3s ease-in;
+    }
+}
+
+.container {
+}

@@ -16,7 +16,7 @@ export class HeaderComponent {
       this.icon()
       this.title()
       if(!this.image()) {
-        this.image.set('./public/favicon.ico')
+        this.image.set('')
       }
     })
   }
