@@ -1,14 +1,26 @@
 <app-loading/>
 <p-toast position="top-center" key="tc" class="ui-toast"></p-toast>
+
 <div class="container">
     <section class="content-one">
         <div class="shape shape1"></div>
         <div class="shape shape2"></div>
         <div class="shape shape3"></div>
     </section>
-    <router-outlet />
+
+    <app-header
+        class="header"
+        icon="arrow_back"
+        title="Adicionar Cápsula"
+    />
+
+    <main class="main-content">
+
+        <router-outlet />
+    </main>
 
     @if(isMobile() && showNavBar()) {
-        <app-nav-bar/>
+        <app-nav-bar class="navbar"/>
     }
+
 </div>

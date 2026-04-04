@@ -4,6 +4,7 @@ import { ToastModule } from 'primeng/toast'
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { IS_MOBILE } from './shared/services/is-mobile.service';
 import { NavBarComponent } from './shared/layout/nav-bar/nav-bar.component';
+import { HeaderComponent } from './shared/layout/header/header.component';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { NavBarComponent } from './shared/layout/nav-bar/nav-bar.component';
     ToastModule,
     LoadingComponent,
     NavBarComponent,
+    HeaderComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

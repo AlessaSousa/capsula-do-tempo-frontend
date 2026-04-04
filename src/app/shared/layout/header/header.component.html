@@ -1,5 +1,9 @@
-<div class="flex gap-2 justify-content-between p-4 align-items-center">
-    <span class="material-symbols-outlined cursor-pointer" (click)="onEvent()">{{icon()}}</span>
-    <h2 class="m-0">{{title()}}</h2>
-    <img [src]="image()">
+<div class="height flex gap-2 justify-content-between p-4 align-items-center">
+    <span class="material-symbols-outlined cursor-pointer" (click)="onEvent()">{{activeHeader()?.icon}}</span>
+    <h2 class="m-0">{{activeHeader()?.label}}</h2>
+    @if(activeHeader()?.image) {
+        <img [src]="activeHeader()?.image">
+    } @else {
+        <span class="material-symbols-outlined person">person</span>
+    }
 </div>

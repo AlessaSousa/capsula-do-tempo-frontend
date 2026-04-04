@@ -12,10 +12,16 @@ export const routes: Routes = [
     // { path: '/auth', loadComponent: () => import('./modules/auth/auth.component').then(m => m.AuthComponent) },
     // { path: '/home', loadComponent: () => import('./modules/home/home.component').then(m => m.HomeComponent) },
 
+    // { path: '', component: SplashComponent },
+    // { path: 'auth', component: AuthComponent },
+    // { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+    // { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    // { path: 'form_capsula', component: FormCapsuleComponent, canActivate: [AuthGuard] }
+
     { path: '', component: SplashComponent },
     { path: 'auth', component: AuthComponent },
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-    { path: 'form_capsula', component: FormCapsuleComponent, canActivate: [AuthGuard] }
+    { path: 'home', component: HomeComponent},
+    { path: 'profile', component: ProfileComponent},
+    { path: 'form_capsula', component: FormCapsuleComponent}
 
 ];

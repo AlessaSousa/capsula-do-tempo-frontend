@@ -1,9 +1,9 @@
 <section>
-    <app-header 
+    <!-- <app-header 
     icon="arrow_back"
     title="Adicionar Cápsula"
     [(eventClick)]="onBack"
-    />
+    /> -->
 
     <aside class="container">
         <div class="box-input">
@@ -28,24 +28,70 @@
         <div class="box-input input-image flex flex-column" style="height: 15rem;">
             <span>Adicionar Imagem</span>
 
-            <div class="flex justify-content-center align-items-center h-full">
-                <label 
-                class="pi pi-plus icon cursor-pointer" 
-                for="add-image"
-                >
-                </label>
-    
-                <input 
-                id="add-image" 
-                type="file" 
-                accept="image/png, image/jpeg, image/jpg, image/gif" 
-                value=""
-                (change)="onUpload($event)" />
-            </div>
+            @if(imgPreview()) {
+                <div>
+                    <img [src]="imgPreview()">
+                </div>
+            } @else {
+                <div class="flex justify-content-center align-items-center h-full">
+                    <label 
+                    class="pi pi-plus icon cursor-pointer" 
+                    for="add-image"
+                    >
+                    </label>
+        
+                    <input 
+                    id="add-image" 
+                    type="file" 
+                    accept="image/png, image/jpeg, image/jpg, image/gif" 
+                    value=""
+                    (change)="onUpload($event)" />
+                </div>
+            }
+
         </div>
 
         <div class="box-input">
-            <p-datepicker/>
+            <span>Receber em</span>
+            <div class="flex gap-2">
+
+                <p-datepicker
+                class="w-6"
+                fluid
+                format="dd/mm/yy"
+                [(ngModel)]="date"
+                showIcon="true"
+                iconDisplay="input"
+                appendTo="body"
+                />
+
+                <p-datepicker 
+                fluid
+                class="w-6"
+                [(ngModel)]="date" 
+                [iconDisplay]="'input'" 
+                [showIcon]="true" 
+                [timeOnly]="true" 
+                appendTo="body"
+                inputId="templatedisplay">
+                    <ng-template 
+                    #inputicon 
+                    let-clickCallBack="clickCallBack">
+                        <i class="pi pi-clock" 
+                        (click)="clickCallBack($event)">
+                        </i>
+                    </ng-template>
+                </p-datepicker>
+            </div>
+        </div>
+
+        <div class="customButton">
+            <p-button
+            label="Enviar"
+            icon="pi pi-send"
+            iconPos="right"
+            fluid
+            />
         </div>
     </aside>
 

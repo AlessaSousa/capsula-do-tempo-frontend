@@ -1,15 +1,26 @@
 .container {
-    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
     position: relative;
     overflow: hidden;
 }
 
-app-nav-bar {
+.header {
     flex-shrink: 0;
-    bottom: 0;
-    position: fixed;
-    z-index: 1000;
     width: 100%;
+}
+
+.navbar {
+    flex-shrink: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.main-content {
+    flex: 1;
+    position: relative;
+    overflow-y: auto;
 }
 
 .content-one {

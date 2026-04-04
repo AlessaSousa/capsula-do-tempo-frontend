@@ -1,16 +1,24 @@
-import { Component, effect, inject, model, ModelSignal } from '@angular/core';
-import { HeaderComponent } from '../../shared/layout/header/header.component'
+import { Component, effect, inject, model, ModelSignal, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatePicker } from 'primeng/datepicker'
+import { FormsModule } from '@angular/forms';
+import { Button } from 'primeng/button';
 @Component({
   selector: 'app-form-capsule',
-  imports: [HeaderComponent, DatePicker],
+  imports: [
+    DatePicker,
+    FormsModule,
+    Button
+  ],
   templateUrl: './form-capsule.component.html',
   styleUrl: './form-capsule.component.scss',
 })
 export class FormCapsuleComponent {
   public onBack: ModelSignal<boolean> = model(false)
   private router = inject(Router);
+  protected date = new Date();
+  protected imgPreview = signal('');
+  protected hora = 0;
 
   constructor() {
     effect(() => {
