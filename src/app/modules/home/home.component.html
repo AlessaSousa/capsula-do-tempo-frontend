@@ -1,1 +1,26 @@
-<p>home works!</p>
+<section>
+    <header class="flex justify-content-center gap-4 flex-wrap">
+        <div class="content">
+            <span class="point violet"></span>
+            <span class="legend">Mensagens Programadas</span>
+        </div>
+
+        <div class=" content">
+            <span class="point green"></span>
+            <span class="legend">Mensagens Recebidas</span>
+        </div>
+    </header>
+    <aside>
+        @for (capsule of listCapsules(); track capsule.title) {
+        <div class="customBox cards">
+            <h3 class="m-0">{{ capsule.title }}</h3>
+            <p class="my-2">{{ capsule.message }}</p>
+
+            <div class="date">
+                <span class="material-symbols-outlined">nest_clock_farsight_analog</span>
+                <small>{{ capsule.date | date:'dd/MM/yyyy' }}</small>
+            </div>
+        </div>
+        }
+    </aside>
+</section>

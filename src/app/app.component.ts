@@ -23,11 +23,13 @@ export class AppComponent {
   private router = inject(Router);
   public isMobile = inject(IS_MOBILE);
   public showNavBar = signal(false);
+  public showHeader = signal(false);
 
   constructor() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.showNavBar.set(['/home', '/profile', '/form_capsula'].includes(event.urlAfterRedirects))
+        this.showHeader.set(['/home', '/profile', '/form_capsula'].includes(event.urlAfterRedirects))
       }
     })
   }

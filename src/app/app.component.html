@@ -8,14 +8,15 @@
         <div class="shape shape3"></div>
     </section>
 
-    <app-header
-        class="header"
-        icon="arrow_back"
-        title="Adicionar Cápsula"
-    />
+    @if(showHeader()) {
+        <app-header
+            class="header"
+            icon="arrow_back"
+            title="Adicionar Cápsula"
+        />
+    }
 
     <main class="main-content">
-
         <router-outlet />
     </main>
 

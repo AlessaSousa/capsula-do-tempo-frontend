@@ -23,9 +23,9 @@ export class HeaderComponent {
   public activeHeader: WritableSignal<IHeader | undefined> = signal(undefined)
   
   protected headerItems: WritableSignal<IHeader[]> = signal([
-    { route: '/home', icon: 'home', label: 'Cápsulas' },
-    { route: '/form_capsula', icon: 'add', label: 'Adicionar Cápsula' },
-    { route: '/profile', icon: 'people', label: 'Perfil' }
+    { route: '/home', icon: 'menu', label: 'Cápsulas' },
+    { route: '/form_capsula', icon: 'menu', label: 'Adicionar Cápsula' },
+    { route: '/profile', icon: 'menu', label: 'Perfil' }
   ]);
 
   constructor() {

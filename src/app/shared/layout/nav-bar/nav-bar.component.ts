@@ -35,8 +35,8 @@ export class NavBarComponent {
 
     this.menuItems.set(
       [
-        { route: '/home', icon: 'hourglass', label: 'Adicionar' },
-        { route: '/home', icon: 'note', label: 'Adicionar' },
+        // { route: '/home', icon: 'hourglass', label: 'Adicionar' },
+        // { route: '/home', icon: 'note', label: 'Adicionar' },
         { route: '/home', icon: 'home', label: 'Adicionar' },
         { route: '/form_capsula', icon: 'add', label: 'Adicionar' },
         { route: '/profile', icon: 'people', label: 'Adicionar' }

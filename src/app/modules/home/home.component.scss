@@ -1,0 +1,33 @@
+.date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-primary);
+}
+
+.violet {
+    background: var(--color-primary);
+}
+
+.green {
+    background: green;
+}
+
+.point {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.content {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.cards:hover {
+    transform: scale(0.98);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    border: 1px solid var(--color-primary);
+}

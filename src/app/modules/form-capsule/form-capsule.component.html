@@ -1,36 +1,49 @@
 <section>
-    <!-- <app-header 
-    icon="arrow_back"
-    title="Adicionar Cápsula"
-    [(eventClick)]="onBack"
-    /> -->
-
-    <aside class="container">
-        <div class="box-input">
+    <form class="container" [formGroup]="form" (submit)="onSubmit()">
+        <div class="customBox">
             <span class="text-gray-700">Título</span>
-            <input class="custom-input" placeholder="Digite aqui...">
+            <input 
+            class="custom-input" 
+            placeholder="Digite aqui..."
+            formControlName="title"
+            >
         </div>
 
-        <div class="box-input">
+        <div class="customBox">
             <span class="text-gray-700">E-mail do destinatário</span>
-            <input type="email" class="custom-input" placeholder="Digite aqui...">
+            <input 
+            type="email" 
+            class="custom-input" 
+            placeholder="Digite aqui..."
+            formControlName="email"
+            >
         </div>
 
-        <div class="box-input flex flex-column">
-            <span class="text-gray-700">E-mail do destinatário</span>
+        <div class="customBox flex flex-column">
+            <span class="text-gray-700">Mensagem</span>
             <textarea 
             class="custom-textarea" 
             placeholder="Digite aqui..."
             [rows]="6"
+            formControlName="mensagem"
             ></textarea>
         </div>
 
-        <div class="box-input input-image flex flex-column" style="height: 15rem;">
+        <div class="customBox input-image flex flex-column" style="height: 15rem;">
             <span>Adicionar Imagem</span>
 
             @if(imgPreview()) {
-                <div>
+                <div class="img-preview">
                     <img [src]="imgPreview()">
+
+                    <p-button 
+                    class="btn-cancel" 
+                    icon="pi pi-times" 
+                    rounded
+                    severity="danger"
+                    size="small"
+                    (click)="removeImg()"
+                    />
                 </div>
             } @else {
                 <div class="flex justify-content-center align-items-center h-full">
@@ -51,7 +64,7 @@
 
         </div>
 
-        <div class="box-input">
+        <div class="customBox">
             <span>Receber em</span>
             <div class="flex gap-2">
 
@@ -59,7 +72,7 @@
                 class="w-6"
                 fluid
                 format="dd/mm/yy"
-                [(ngModel)]="date"
+                formControlName="date"
                 showIcon="true"
                 iconDisplay="input"
                 appendTo="body"
@@ -68,7 +81,7 @@
                 <p-datepicker 
                 fluid
                 class="w-6"
-                [(ngModel)]="date" 
+                formControlName="hour"
                 [iconDisplay]="'input'" 
                 [showIcon]="true" 
                 [timeOnly]="true" 
@@ -91,8 +104,9 @@
             icon="pi pi-send"
             iconPos="right"
             fluid
+            type="submit"
             />
         </div>
-    </aside>
+    </form>
 
 </section>
